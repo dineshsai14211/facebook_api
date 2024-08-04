@@ -13,7 +13,7 @@ def facebook_post():  # POST request
             "published": True,
             }
 
-    response = requests.post(f"https://graph.facebook.com/v20.0/me/feed?access_token={Access_token}",
+    response = requests.post(f"https://graph.facebook.com/367234763145366/feed?access_token={Access_token}",
                              headers=headers, data=json.dumps(data))
     print(response)
     print(f"Response is {response.json()}")
@@ -31,15 +31,26 @@ def post_photo():  # POST request
         'url': 'https://hips.hearstapps.com/hmg-prod/images/alpe-di-siusi-sunrise-with-sassolungo-or-langkofel-royalty-free-image-1623254127.jpg',
     }
 
-    response = requests.post('https://graph.facebook.com/v20.0/61564010091393/photos', headers=headers, json=data)
+    response = requests.post(f'https://graph.facebook.com/v20.0/367234763145366/photos?access_token={Access_token}',
+                             headers=headers, json=data)
     print(f"Response is {response.json()}")
+
+
+post_photo()
 
 
 def get_posts():  # GET Request
-    response = requests.get('https://graph.facebook.com/v20.0/61564010091393/feed')
+    response = requests.get(f'https://graph.facebook.com/v20.0/367234763145366/feed?access_token={Access_token}')
     print(f"Response is {response.json()}")
 
 
-def delete_post():
-    response = requests.delete('https://graph.facebook.com/v20.0/page_post_id')
+get_posts()
+
+
+def delete_post():  # DELETE Request
+    response = requests.delete(
+        f'https://graph.facebook.com/v20.0/367234763145366_122094606962466172?access_token={Access_token}')
     print(f"Response is {response.json()}")
+
+
+delete_post()
